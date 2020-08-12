@@ -20,7 +20,7 @@ jobs:
         # Version of Qt to install
         version: # optional, default is 5.12.9
         # Host platform
-        host: # optional
+        host: linux
         # Target platform for build
         target: # optional, default is desktop
         # Architecture for Windows/Android
