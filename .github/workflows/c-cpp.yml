@@ -44,9 +44,9 @@ jobs:
       uses: ashutoshvarma/action-cmake-build@v1
       with:
         # Build directory where build files will be generated
-        build-dir: ${{ runner.workspace }}/build
+        build-dir: build # ${{ runner.workspace }}/build
         # CMake build type (Release, Debug, MinSizeRel, RelWithDebInfo)
-        build-type: Debug
+        build-type: Release
         # C Compiler for toolchain
         cc: gcc
         # C++ Compiler for toolchain
