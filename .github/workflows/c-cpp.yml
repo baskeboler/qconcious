@@ -41,8 +41,8 @@ jobs:
         # Any extra arguments to append to the back
         extra: # optional
     - name: Configure CMake
-      working-directory: build
+#       working-directory: build
       run: cmake .. -DCMAKE_TARGET=Release
     - name: Compile
-      working-directory: build
+#       working-directory: build
       run: make
