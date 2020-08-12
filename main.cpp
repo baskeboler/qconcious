@@ -6,7 +6,7 @@
 #include "randomagent.h"
 #include "strategygameagent.h"
 #include "titsfortatsagent.h"
-#include "agentstrategy.h"
+#include "strategies.h"
 
 #include <QApplication>
 #include <iostream>
