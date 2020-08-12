@@ -6,6 +6,7 @@
 #include "randomagent.h"
 #include "strategygameagent.h"
 #include "titsfortatsagent.h"
+#include "agentstrategy.h"
 
 #include <QApplication>
 #include <iostream>
@@ -13,7 +14,9 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    GameAgent *a1 = new TitsForTatsAgent, *a2 = new StrategyGameAgent;
+    GameAgent *a1 = new TitsForTatsAgent;
+    auto a2 = new StrategyGameAgent;
+    a2->setStrategy(new RandomStrategy{a2});
     AbstractGame *g = new GameImpl(a1, a2, 10);
 
     g->playGame();
