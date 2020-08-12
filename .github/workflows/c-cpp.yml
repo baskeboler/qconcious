@@ -22,7 +22,7 @@ jobs:
         # Host platform
         host: linux
         # Target platform for build
-        target: # optional, default is desktop
+        target: desktop # optional, default is desktop
         # Architecture for Windows/Android
         arch: # optional
         # Whether or not to install Qt dependencies on Linux
