@@ -35,9 +35,9 @@ jobs:
         # Whether or not to actually download Qt
         cached:  # optional, default is false
         # Version of aqtinstall to use in case of issues
-        aqtversion: 0.9.4 # optional, default is ==0.9.4
+        aqtversion:  # optional, default is ==0.9.4
         # Version of py7zr to use in case of issues
-        py7zrversion: 0.9.1 # optional, default is ==0.9.1
+        py7zrversion: # optional, default is ==0.9.1
         # Any extra arguments to append to the back
         extra: # optional
     - name: Configure CMake
