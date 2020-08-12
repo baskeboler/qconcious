@@ -41,7 +41,7 @@ jobs:
         extra: # optional
     - name: Build CMake
 #     - uses: actions/checkout@v2
-    - uses: ashutoshvarma/action-cmake-build@v1
+      uses: ashutoshvarma/action-cmake-build@v1
       with:
         # Build directory where build files will be generated
         build-dir: ${{ runner.workspace }}/build
