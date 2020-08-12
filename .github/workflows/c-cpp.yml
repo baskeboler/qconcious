@@ -44,13 +44,13 @@ jobs:
       uses: ashutoshvarma/action-cmake-build@v1
       with:
         # Build directory where build files will be generated
-        build-dir: # default is ${{ runner.workspace }}/build
+        build-dir: ${{ runner.workspace }}/build
         # CMake build type (Release, Debug, MinSizeRel, RelWithDebInfo)
-        build-type: # default is Release
+        build-type: Debug
         # C Compiler for toolchain
-        cc: # optional
+        cc: clang
         # C++ Compiler for toolchain
-        cxx: # optional
+        cxx: clang++
         # CMake build target
         target: # optional
         # Number of concurrent jobs for build and test
