@@ -39,28 +39,28 @@ jobs:
         py7zrversion: # optional, default is ==0.9.1
         # Any extra arguments to append to the back
         extra: # optional
-    - uses: actions/checkout@v2
     - name: Build CMake
-      uses: ashutoshvarma/action-cmake-build@v1
+    - uses: actions/checkout@v2
+    - uses: ashutoshvarma/action-cmake-build@v1
       with:
         # Build directory where build files will be generated
         build-dir: ${{ runner.workspace }}/build
         # CMake build type (Release, Debug, MinSizeRel, RelWithDebInfo)
         build-type: Debug
         # C Compiler for toolchain
-        cc: clang
+        cc: gcc
         # C++ Compiler for toolchain
-        cxx: clang++
+        cxx: g++
         # CMake build target
-        target: # optional
+        target: all # optional
         # Number of concurrent jobs for build and test
-        parallel: # optional, default is 4
+        parallel: 4 # optional, default is 4
         # Run CTest or not
-        run-test: # optional, default is false
+        run-test: false # optional, default is false
         # Run 'cmake --install' or not
-        install-build: # optional, default is false
+        install-build: false # optional, default is false
         # Update git submodules
-        submodule-update: # optional, default is false
+        submodule-update: false # optional, default is false
         # Misc Options to pass to CMake while configuring project
         configure-options: # optional
         # Misc Options to pass to CMake while building project using cmake --build
