@@ -31,15 +31,18 @@ jobs:
         # Additional Qt modules to install
         modules: widgets charts # optional
         # Force a Qt mirror in case the default is not working
-        mirror: # optional
+        mirror: true # optional
         # Whether or not to actually download Qt
         cached: true # optional, default is false
         # Version of aqtinstall to use in case of issues
         aqtversion: 0.9.4 # optional, default is ==0.9.4
         # Version of py7zr to use in case of issues
-        py7zrversion: # optional, default is ==0.9.1
+        py7zrversion: 0.9.1 # optional, default is ==0.9.1
         # Any extra arguments to append to the back
         extra: # optional
     - name: Configure CMake
       working-directory: build
-      run: cmake .. && make
+      run: cmake .. -DCMAKE_TARGET=Release
+    - name: Compile
+      working-directory: build
+      run: make
