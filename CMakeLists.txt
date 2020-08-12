@@ -45,8 +45,13 @@ set(CONCIOUS_SOURCES
     agentstrategy.h
     strategygameagent.cpp
     strategygameagent.h
-    testobj.cpp
-    testobj.h)
+    cheaterstrategy.cpp
+    cheaterstrategy.h
+    cooperatorstrategy.h
+    cooperatorstrategy.cpp
+    randomstrategy.h
+    randomstrategy.cpp
+    strategies.h)
 
 if(ANDROID)
   add_library(qtconcious SHARED
