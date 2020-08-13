@@ -22,8 +22,7 @@ jobs:
           - os: windows-latest
             platform: windows
             target: desktop
-            arch: win64_mingw81
-      
+            arch: MSVC2017-X86_64      
     steps:
     - uses: actions/checkout@v2
     - name: Install Qt
