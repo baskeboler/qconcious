@@ -2,15 +2,14 @@
 #define RANDOMSTRATEGY_H
 
 #include <QRandomGenerator>
+
 #include "agentstrategy.h"
 
-
 class RandomStrategy : public AgentStrategy {
-
   // AgentStrategy interface
-public:
+ public:
   RandomStrategy(GameAgent *a);
   virtual StrategyAction *nextAction(AbstractGame *game) override;
 };
 
-#endif // RANDOMSTRATEGY_H
+#endif  // RANDOMSTRATEGY_H

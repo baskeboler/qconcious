@@ -7,6 +7,9 @@
 
 #include "gameagent.h"
 
+/**
+ * @brief The Round struct
+ */
 struct Round {
   int round;
   GameAction action1;
@@ -16,6 +19,9 @@ struct Round {
   Round() : Round{0, Cooperate, Cooperate} {}
 };
 
+/**
+ * @brief The RoundResult struct
+ */
 struct RoundResult {
   int round;
   int score1;
@@ -24,9 +30,16 @@ struct RoundResult {
       : round{r}, score1{s1}, score2{s2} {}
 };
 
+/**
+ * @brief The AbstractGame class
+ */
 class AbstractGame : public QObject {
   Q_OBJECT
  public:
+  Q_PROPERTY(int m_rounds READ getRounds WRITE setRounds);
+  Q_PROPERTY(int m_currentRound READ getCurrentRound WRITE setCurrentRound);
+  Q_PROPERTY(GameAgent *m_agent1 READ getAgent1 WRITE setAgent1);
+  Q_PROPERTY(GameAgent *m_agent2 READ getAgent2 WRITE setAgent2);
   AbstractGame(GameAgent *a, GameAgent *b, int rounds,
                QObject *parent = nullptr);
 
@@ -51,6 +64,9 @@ class AbstractGame : public QObject {
 
   QVector<GameAction> agentActions(GameAgent *a);
   QVector<GameAction> opponentActions(GameAgent *a);
+  int getCurrentRound() const;
+  void setCurrentRound(int currentRound);
+
  signals:
   void roundPlayed(const RoundResult &result);
 

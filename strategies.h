@@ -1,8 +1,11 @@
 #ifndef STRATEGIES_H
 #define STRATEGIES_H
 
-#include "cooperatorstrategy.h"
-#include "randomstrategy.h"
+#include <QtCore>
+
 #include "cheaterstrategy.h"
+#include "cooperatorstrategy.h"
+#include "forgivingstrategy.h"
+#include "randomstrategy.h"
 
 #endif // STRATEGIES_H

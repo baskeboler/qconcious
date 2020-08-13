@@ -55,3 +55,13 @@ QVector<GameAction> AbstractGame::opponentActions(GameAgent *a) {
     return agentActions(getAgent1());
   }
 }
+
+int AbstractGame::getCurrentRound() const
+{
+    return m_currentRound;
+}
+
+void AbstractGame::setCurrentRound(int currentRound)
+{
+    m_currentRound = currentRound;
+}

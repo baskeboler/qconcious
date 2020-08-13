@@ -2,14 +2,13 @@
 #define RANDOMAGENT_H
 
 #include "gameagent.h"
-class RandomAgent: public GameAgent
-{
-public:
-    RandomAgent();
-    virtual ~RandomAgent();
-    // GameAgent interface
-public:
-    virtual GameAction nextAction(AbstractGame *game) override;
+class RandomAgent : public GameAgent {
+ public:
+  RandomAgent();
+  virtual ~RandomAgent();
+  // GameAgent interface
+ public:
+  virtual GameAction nextAction(AbstractGame *game) override;
 };
 
-#endif // RANDOMAGENT_H
+#endif  // RANDOMAGENT_H

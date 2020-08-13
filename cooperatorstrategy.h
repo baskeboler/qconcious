@@ -3,13 +3,10 @@
 
 #include "agentstrategy.h"
 
-
-
 class CooperatorStrategy : public AgentStrategy {
-
   // AgentStrategy interface
-public:
+ public:
   CooperatorStrategy(GameAgent *a);
   virtual StrategyAction *nextAction(AbstractGame *game) override;
 };
-#endif // COOPERATORSTRATEGY_H
+#endif  // COOPERATORSTRATEGY_H

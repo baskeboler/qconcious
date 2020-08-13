@@ -4,27 +4,33 @@
 #include "gameimpl.h"
 #include "mainwindow.h"
 #include "randomagent.h"
+#include "strategies.h"
 #include "strategygameagent.h"
 #include "titsfortatsagent.h"
-#include "strategies.h"
-
 #include <QApplication>
+//#include <cstddef>
 #include <iostream>
-using namespace std;
+#include <locale>
+#include <string>
+// using namespace std;
+using namespace std::literals;
 
-int main(int argc, char *argv[])
+int
+main(int argc, char* argv[])
 {
-    GameAgent *a1 = new TitsForTatsAgent;
-    auto a2 = new StrategyGameAgent;
-    a2->setStrategy(new RandomStrategy{a2});
-    AbstractGame *g = new GameImpl(a1, a2, 10);
+  //  pruebas();
+  auto* a1 = StrategyGameAgent::buildAgent<ForgivingStrategy<3>>();
+  auto a2 = StrategyGameAgent::buildAgent<RandomStrategy>();
+  // new StrategyGameAgent;
+  //    a2->setStrategy(new RandomStrategy{a2});
+  AbstractGame* g = new GameImpl(a1, a2, 10);
 
-    g->playGame();
+  g->playGame();
 
-    cout << "agent 1: " << g->getScore(*a1) << endl
-         << "agent 2: " << g->getScore(*a2) << endl;
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+  std::cout << "agent 1: " << g->getScore(*a1) << std::endl
+            << "agent 2: " << g->getScore(*a2) << std::endl;
+  QApplication a(argc, argv);
+  MainWindow w;
+  w.show();
+  return a.exec();
 }

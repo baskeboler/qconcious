@@ -3,14 +3,11 @@
 
 #include "agentstrategy.h"
 
-
-
 class CheaterStrategy : public AgentStrategy {
-
   // AgentStrategy interface
-public:
+ public:
   CheaterStrategy(GameAgent *a);
   virtual StrategyAction *nextAction(AbstractGame *game) override;
 };
 
-#endif // CHEATERSTRATEGY_H
+#endif  // CHEATERSTRATEGY_H

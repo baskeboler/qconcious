@@ -3,14 +3,11 @@
 
 #include "gameagent.h"
 
-
-
-class Cooperator: public GameAgent
-{
-public:
-    Cooperator();
-    virtual ~Cooperator();
-    virtual GameAction nextAction(AbstractGame *game) override;
+class Cooperator : public GameAgent {
+ public:
+  Cooperator();
+  virtual ~Cooperator();
+  virtual GameAction nextAction(AbstractGame *game) override;
 };
 
-#endif // COOPERATOR_H
+#endif  // COOPERATOR_H
