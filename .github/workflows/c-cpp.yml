@@ -40,6 +40,8 @@ jobs:
         py7zrversion: # optional, default is ==0.9.1
         # Any extra arguments to append to the back
         extra: # optional
+    - name: Prepare build directory
+      run: mkdir build
     - name: Configure CMake
       working-directory: $GITHUB_WORKSPACE/build
       run: cmake .. -DCMAKE_TARGET=Release
