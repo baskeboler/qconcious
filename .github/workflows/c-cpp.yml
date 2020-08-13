@@ -22,7 +22,7 @@ jobs:
           - os: windows-latest
             platform: windows
             target: desktop
-            arch: Windows_10_mingw810_64 
+            arch: win64_mingw810_64 
     steps:
     - uses: actions/checkout@v2
     - name: Install Qt
