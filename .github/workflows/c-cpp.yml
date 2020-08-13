@@ -12,13 +12,15 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        platform: [linux, windows]
-        exclude:
+#         os: [ubuntu-latest, windows-latest]
+#         platform: [linux, windows]
+        include:
           - os: ubuntu-latest
-            platform: windows
-          - os: windows-latest
             platform: linux
+            arch: 
+          - os: windows-latest
+            platform: windows
+            arch: win64_msvc2019_64
       
     steps:
     - uses: actions/checkout@v2
@@ -30,11 +32,11 @@ jobs:
         # Version of Qt to install
         version:  5.12.9 # optional, default is 5.12.9
         # Host platform
-        host: ${{ matrix.platform }}
+        host: windows
         # Target platform for build
         target: desktop # optional, default is desktop
         # Architecture for Windows/Android
-        arch: x86_64 # optional
+        arch: ${{matrix.arch}} # optional
         # Whether or not to install Qt dependencies on Linux
         install-deps: true # optional, default is true
         # Additional Qt modules to install
