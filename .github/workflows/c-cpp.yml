@@ -17,10 +17,12 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: linux
+            target: desktop
             arch: 
           - os: windows-latest
-            platform: MSVC
-            arch: win64_msvc2019_64
+            platform: windows
+            target: desktop
+            arch: win64_mingw81
       
     steps:
     - uses: actions/checkout@v2
