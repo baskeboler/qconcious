@@ -12,39 +12,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Install Qt
       uses: jurplel/install-qt-action@v2.8.0
       with:
         # Directory to install Qt
-        dir: # optional
+        dir:  # optional
         # Version of Qt to install
-        version: # optional, default is 5.12.9
+        version:  5.12.9 # optional, default is 5.12.9
         # Host platform
-        host: # optional
+        host: linux
         # Target platform for build
-        target: # optional, default is desktop
+        target: desktop # optional, default is desktop
         # Architecture for Windows/Android
         arch: # optional
         # Whether or not to install Qt dependencies on Linux
-        install-deps: # optional, default is true
+        install-deps: true # optional, default is true
         # Additional Qt modules to install
-        modules: # optional
+        modules: all # optional
         # Force a Qt mirror in case the default is not working
-        mirror: # optional
+        mirror:  # optional
         # Whether or not to actually download Qt
-        cached: # optional, default is false
+        cached:  # optional, default is false
         # Version of aqtinstall to use in case of issues
-        aqtversion: # optional, default is ==0.9.4
+        aqtversion:  # optional, default is ==0.9.4
         # Version of py7zr to use in case of issues
         py7zrversion: # optional, default is ==0.9.1
         # Any extra arguments to append to the back
         extra: # optional
-    - uses: actions/checkout@v2
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: Prepare build directory
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release  && make
+#     - name: Configure CMake
+#       working-directory: $GITHUB_WORKSPACE/build
+#       run: cmake .. -DCMAKE_BUILD_TYPE=Release
+#     - name: Compile
+#       working-directory: $GITHUB_WORKSPACE/build
+#       run: make
