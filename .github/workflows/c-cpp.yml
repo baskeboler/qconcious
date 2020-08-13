@@ -42,6 +42,14 @@ jobs:
         extra: # optional
     - name: Prepare build directory
       run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release  && make
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.1.4
+      with:
+        # Artifact name
+        name: qtconciuos # optional, default is artifact
+        # A file, directory or wildcard pattern that describes what to upload
+        path: build/qtconcious
+        # The desired behavior if no files are found using the provided path.
 #     - name: Configure CMake
 #       working-directory: $GITHUB_WORKSPACE/build
 #       run: cmake .. -DCMAKE_BUILD_TYPE=Release
