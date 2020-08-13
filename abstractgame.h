@@ -1,9 +1,11 @@
 #ifndef ABSTRACTGAME_H
 #define ABSTRACTGAME_H
 
-#include "gameagent.h"
 #include <QMap>
 #include <QObject>
+#include <QVector>
+
+#include "gameagent.h"
 
 struct Round {
   int round;
@@ -17,12 +19,13 @@ struct RoundResult {
   int round;
   int score1;
   int score2;
-  RoundResult(const int r, const int s1, const int s2) : round{r}, score1{s1}, score2{s2} {}
+  RoundResult(const int r, const int s1, const int s2)
+      : round{r}, score1{s1}, score2{s2} {}
 };
 
 class AbstractGame : public QObject {
   Q_OBJECT
-public:
+ public:
   AbstractGame(GameAgent *a, GameAgent *b, int rounds,
                QObject *parent = nullptr);
 
@@ -47,10 +50,10 @@ public:
 
   QVector<GameAction> agentActions(GameAgent *a);
   QVector<GameAction> opponentActions(GameAgent *a);
-signals:
+ signals:
   void roundPlayed(const RoundResult &result);
 
-protected:
+ protected:
   int m_rounds;
   int m_currentRound;
   GameAgent *m_agent1;
@@ -59,4 +62,4 @@ protected:
   QVector<Round> history;
 };
 
-#endif // ABSTRACTGAME_H
+#endif  // ABSTRACTGAME_H
