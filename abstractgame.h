@@ -13,6 +13,7 @@ struct Round {
   GameAction action2;
   Round(const int r, const GameAction a1, const GameAction a2)
       : round{r}, action1{a1}, action2{a2} {}
+  Round() : Round{0, Cooperate, Cooperate} {}
 };
 
 struct RoundResult {
