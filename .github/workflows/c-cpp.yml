@@ -19,10 +19,10 @@ jobs:
             platform: linux
             target: desktop
             arch: 
-          - os: windows-latest
-            platform: windows
-            target: desktop
-            arch: mingw810_amd64 
+#           - os: windows-latest
+#             platform: windows
+#             target: desktop
+#             arch: mingw810_amd64 
     steps:
     - uses: actions/checkout@v2
     - name: Install Qt
