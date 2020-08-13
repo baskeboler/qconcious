@@ -41,10 +41,10 @@ jobs:
         # Any extra arguments to append to the back
         extra: # optional
     - name: Prepare build directory
-      run: mkdir build
-    - name: Configure CMake
-      working-directory: $GITHUB_WORKSPACE/build
-      run: cmake .. -DCMAKE_TARGET=Release
-    - name: Compile
-      working-directory: $GITHUB_WORKSPACE/build
-      run: make
+      run: mkdir build && cd build && cmake .. && make
+#     - name: Configure CMake
+#       working-directory: $GITHUB_WORKSPACE/build
+#       run: cmake .. -DCMAKE_BUILD_TYPE=Release
+#     - name: Compile
+#       working-directory: $GITHUB_WORKSPACE/build
+#       run: make
