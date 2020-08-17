@@ -25,7 +25,7 @@ set(CMAKE_CXX_FLAGS -Wall)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets Charts REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Charts Network REQUIRED)
 
 set(CONCIOUS_SOURCES
     gameagent.cpp
@@ -54,7 +54,10 @@ set(CONCIOUS_SOURCES
     randomstrategy.cpp
     strategies.h
     forgivingstrategy.cpp
-    forgivingstrategy.h)
+    forgivingstrategy.h
+    utils/webimagewidget.h
+    utils/webimagewidget.cpp
+    states.scxml)
 
 if(ANDROID)
   add_library(qtconcious SHARED
@@ -74,4 +77,4 @@ else()
   )
 endif()
 
-target_link_libraries(qtconcious PRIVATE Qt5::Widgets Qt5::Charts)
+target_link_libraries(qtconcious PRIVATE Qt5::Widgets Qt5::Charts Qt5::Network)

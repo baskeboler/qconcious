@@ -32,6 +32,7 @@ public:
 
   int forgiveness() const { return m_forgiveness; }
   void setForgiveness(int forgiveness) { m_forgiveness = forgiveness; }
+  virtual ~ForgivingStrategy() {}
 
 private:
   int m_forgiveness;

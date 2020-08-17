@@ -15,11 +15,13 @@
 // using namespace std;
 using namespace std::literals;
 
+typedef ForgivingStrategy<5> MyCustomStrategy;
+
 int
 main(int argc, char* argv[])
 {
   //  pruebas();
-  auto* a1 = StrategyGameAgent::buildAgent<ForgivingStrategy<3>>();
+  auto* a1 = StrategyGameAgent::buildAgent<MyCustomStrategy>();
   auto a2 = StrategyGameAgent::buildAgent<RandomStrategy>();
   // new StrategyGameAgent;
   //    a2->setStrategy(new RandomStrategy{a2});

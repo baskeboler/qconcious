@@ -1,3 +1,28 @@
-<?xml version="1.0" ?>
-<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" name="states">
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="states" qt:editorversion="4.12.4" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" initial="Verde">
+    <qt:editorinfo initialGeometry="204.45;281.82;-20;-20;40;40"/>
+    <state id="Verde">
+        <qt:editorinfo geometry="409.15;281.82;-60;-50;120;100" scenegeometry="409.15;281.82;349.15;231.82;120;100"/>
+        <onentry>
+            <raise event="luzverde"/>
+        </onentry>
+        <transition type="external" event="Transition_8" target="Amarillo"/>
+    </state>
+    <state id="Amarillo">
+        <qt:editorinfo geometry="633.98;281.82;-60;-50;120;100" scenegeometry="633.98;281.82;573.98;231.82;120;100"/>
+        <transition type="external" event="Transition_9" target="Rojo"/>
+        <onentry>
+            <raise event="luzamarilla"/>
+        </onentry>
+    </state>
+    <state id="Rojo">
+        <qt:editorinfo geometry="859.50;281.82;-60;-50;120;100" scenegeometry="859.50;281.82;799.50;231.82;120;100"/>
+        <onentry>
+            <raise event="luzroja"/>
+        </onentry>
+        <transition type="external" event="Transition_10" target="Final_1"/>
+    </state>
+    <final id="Final_1">
+        <qt:editorinfo geometry="859.50;484.56;-20;-20;40;40" scenegeometry="859.50;484.56;839.50;464.56;40;40"/>
+    </final>
 </scxml>
