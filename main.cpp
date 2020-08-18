@@ -9,9 +9,12 @@
 #include "titsfortatsagent.h"
 #include <QApplication>
 //#include <cstddef>
+#include "utils.h"
+#include <algorithm>
 #include <iostream>
 #include <locale>
 #include <string>
+
 // using namespace std;
 using namespace std::literals;
 
@@ -21,6 +24,14 @@ int
 main(int argc, char* argv[])
 {
   //  pruebas();
+
+  QRandomGenerator* rand = QRandomGenerator::system();
+  QVector<long> nums(2000000);
+  QVector<int> out(10);
+  rand->generate(nums.begin(), nums.end());
+  BenfordsLaw::compute(nums, out);
+  qInfo() << "benfordness: " << out;
+  qInfo() << "aggregate sum: " << std::accumulate(out.begin(), out.end(), 0);
   auto* a1 = StrategyGameAgent::buildAgent<MyCustomStrategy>();
   auto a2 = StrategyGameAgent::buildAgent<RandomStrategy>();
   // new StrategyGameAgent;

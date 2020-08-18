@@ -57,6 +57,9 @@ set(CONCIOUS_SOURCES
     forgivingstrategy.h
     utils/webimagewidget.h
     utils/webimagewidget.cpp
+    utils/benfordslaw.cpp
+    utils/benfordslaw.h
+    utils.h
     states.scxml)
 
 if(ANDROID)

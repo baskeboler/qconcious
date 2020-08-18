@@ -12,6 +12,7 @@
 #include "strategies.h"
 #include "strategygameagent.h"
 #include "titsfortatsagent.h"
+#include "utils.h"
 
 using namespace QtCharts;
 
@@ -21,6 +22,10 @@ MainWindow::MainWindow(QWidget* parent)
   , chart{ new QChart }
 {
   ui->setupUi(this);
+
+  ui->webImage->setUrl(
+    "http://searchengineland.com/figz/wp-content/seloads/2015/12/"
+    "google-amp-fast-speed-travel-ss-1920-800x450.jpg");
 
   //    chart = new QChart();
   QChartView* view = new QChartView(chart);

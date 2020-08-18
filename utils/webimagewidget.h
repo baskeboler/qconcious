@@ -10,27 +10,38 @@
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-class WebImageWidget : public QWidget
+
+#include <QBuffer>
+#include <QLabel>
+
+class WebImageWidget : public QLabel
 {
   Q_OBJECT
+  Q_PROPERTY(QString url READ getUrl WRITE setUrl)
 public:
-  explicit WebImageWidget(const QString& url, QWidget* parent = nullptr)
-    : QWidget(parent)
-  {
-    QNetworkAccessManager* mgr = new QNetworkAccessManager{ this };
-    //    QNetworkReply* localRequest = QNetworkAccessManager::et(request)
+  explicit WebImageWidget(const QString& url, QWidget* parent = nullptr);
 
-    connect(mgr,
-            &QNetworkAccessManager::finished,
-            this,
-            &WebImageWidget::downloadFinished);
-    mgr->get(QNetworkRequest{ QUrl{ url } });
-  }
+  WebImageWidget(QWidget* parent = nullptr);
+  QString getUrl() const;
+  void setUrl(const QString& value);
 
 public slots:
-  void downloadFinished(QNetworkReply* reply) {}
+  void downloadFinished(QNetworkReply* reply);
+  void readyReadSlot();
+  void errorSlot();
+  void sslErrorSlot();
+  void startDownload();
 
 signals:
+
+  void loadingFailure(const QString& msg);
+  void urlChanged();
+
+private:
+  QNetworkReply* reply;
+  QBuffer buffer;
+  QImage* image;
+  QString url;
 };
 
 #endif // WEBIMAGEWIDGET_H
