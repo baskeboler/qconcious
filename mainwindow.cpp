@@ -1,7 +1,11 @@
 #include "mainwindow.h"
 
+#include <QAreaSeries>
+#include <QChart>
+#include <QChartView>
+#include <QValueAxis>
+#include <QtCharts/QAbstractAxis>
 #include <QtCharts/QLineSeries>
-#include <QtCharts>
 
 #include "./ui_mainwindow.h"
 #include "cheater.h"
@@ -17,15 +21,12 @@
 using namespace QtCharts;
 
 MainWindow::MainWindow(QWidget* parent)
-  : QMainWindow(parent)
-  , ui(new Ui::MainWindow)
-  , chart{ new QChart }
-{
+    : QMainWindow(parent), ui(new Ui::MainWindow), chart{new QChart} {
   ui->setupUi(this);
 
-  ui->webImage->setUrl(
-    "http://searchengineland.com/figz/wp-content/seloads/2015/12/"
-    "google-amp-fast-speed-travel-ss-1920-800x450.jpg");
+  //  ui->webImage->setUrl(
+  //      "http://searchengineland.com/figz/wp-content/seloads/2015/12/"
+  //      "google-amp-fast-speed-travel-ss-1920-800x450.jpg");
 
   //    chart = new QChart();
   QChartView* view = new QChartView(chart);
@@ -40,23 +41,16 @@ MainWindow::MainWindow(QWidget* parent)
   ui->chartWidget->setLayout(layout);
 }
 
-MainWindow::~MainWindow()
-{
-  delete ui;
-}
+MainWindow::~MainWindow() { delete ui; }
 
-void
-MainWindow::on_horizontalSlider_valueChanged(int value)
-{
+void MainWindow::on_horizontalSlider_valueChanged(int value) {
   ui->roundCountLabel->setNum(value);
 }
 
-GameAgent*
-fromComboIndex(int idx)
-{
+GameAgent* fromComboIndex(int idx) {
   switch (idx) {
     case 0:
-      return StrategyGameAgent::buildAgent<CheaterStrategy>(); // new Cheater;
+      return StrategyGameAgent::buildAgent<CheaterStrategy>();  // new Cheater;
     case 1:
       return StrategyGameAgent::buildAgent<CooperatorStrategy>();
       ;
@@ -72,13 +66,12 @@ fromComboIndex(int idx)
   return nullptr;
 }
 
-void
-MainWindow::on_btnStart_clicked()
-{
+void MainWindow::on_btnStart_clicked() {
   auto a = fromComboIndex(ui->comboBox->currentIndex());
   auto b = fromComboIndex(ui->comboBox_2->currentIndex());
 
   chart->removeAllSeries();
+  for (auto a : chart->axes()) chart->removeAxis(a);
   QLineSeries *series = new QLineSeries(), *series2 = new QLineSeries;
   int rounds = ui->horizontalSlider->value();
   auto axis = new QValueAxis;
@@ -87,7 +80,7 @@ MainWindow::on_btnStart_clicked()
   axis->setMin(ui->progressBar->minimum());
   axis->setMax(ui->progressBar->maximum());
   //  series->attachAxis(axis);
-  auto g = new GameImpl{ a, b, rounds };
+  auto g = new GameImpl{a, b, rounds};
   ui->progressBar->setValue(0);
   ui->progressBar->setMaximum(g->getRounds() - 1);
   ui->progressBar->setMinimum(0);
@@ -107,16 +100,13 @@ MainWindow::on_btnStart_clicked()
   series2->setName("agent 2");
   chart->addSeries(new QAreaSeries(series));
   chart->addSeries(new QAreaSeries(series2));
-  chart->setAxisX(axis);
-  delete g;
+  chart->addAxis(axis, Qt::AlignBottom);
+  g->deleteLater();
   delete a;
   delete b;
 }
 
-void
-MainWindow::keyReleaseEvent(QKeyEvent* event)
-{
+void MainWindow::keyReleaseEvent(QKeyEvent* event) {
   auto escapePressed = event->key() == Qt::Key::Key_Escape;
-  if (escapePressed)
-    QApplication::quit();
+  if (escapePressed) QApplication::quit();
 }

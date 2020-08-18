@@ -6,33 +6,25 @@
 
 class AgentStrategy;
 
-struct StrategyAction
-{
+struct StrategyAction {
   GameAction nextAction;
   AgentStrategy* nextStrategy;
-  StrategyAction(GameAction a, AgentStrategy* s)
-    : nextAction{ a }
-    , nextStrategy{ s }
-  {}
+  StrategyAction(GameAction a, AgentStrategy* s);
 };
 
-class AgentStrategy : public QObject
-{
+class AgentStrategy : public QObject {
   Q_OBJECT
-public:
-  AgentStrategy(GameAgent* a, QObject* parent = nullptr)
-    : QObject{ parent }
-    , m_agent{ a }
-  {}
+ public:
+  AgentStrategy(GameAgent* a, QObject* parent = nullptr);
 
   virtual StrategyAction* nextAction(AbstractGame* game) = 0;
-  virtual ~AgentStrategy() {}
+  virtual ~AgentStrategy();
 
   GameAgent* agent() const;
   void setAgent(GameAgent* agent);
 
-private:
+ private:
   GameAgent* m_agent;
 };
 
-#endif // AGENTSTRATEGY_H
+#endif  // AGENTSTRATEGY_H

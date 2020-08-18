@@ -7,27 +7,27 @@ const RoundResult *GameImpl::scoreRound(const Round &round) {
   int score2 = 0;
   if (round.action1 == round.action2) {
     switch (round.action1) {
-    case Cheat:
+      case Cheat:
 
-      break;
+        break;
 
-    case Cooperate:
-      score1 = 2;
-      score2 = 2;
-      break;
+      case Cooperate:
+        score1 = 2;
+        score2 = 2;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   } else {
     switch (round.action1) {
-    case Cheat:
-      score1 = 3;
-      score2 = -1;
-      break;
-    default:
-      score1 = -1;
-      score2 = 3;
+      case Cheat:
+        score1 = 3;
+        score2 = -1;
+        break;
+      default:
+        score1 = -1;
+        score2 = 3;
     }
   }
   scores[getAgent1()->id()] += score1;

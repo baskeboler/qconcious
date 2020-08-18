@@ -8,40 +8,38 @@
 #include <QtGui/QWidget>
 #endif
 
+#include <QBuffer>
+#include <QLabel>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
-#include <QBuffer>
-#include <QLabel>
-
-class WebImageWidget : public QLabel
-{
+class WebImageWidget : public QLabel {
   Q_OBJECT
   Q_PROPERTY(QString url READ getUrl WRITE setUrl)
-public:
+ public:
   explicit WebImageWidget(const QString& url, QWidget* parent = nullptr);
 
   WebImageWidget(QWidget* parent = nullptr);
   QString getUrl() const;
   void setUrl(const QString& value);
 
-public slots:
+ public slots:
   void downloadFinished(QNetworkReply* reply);
   void readyReadSlot();
   void errorSlot();
   void sslErrorSlot();
   void startDownload();
 
-signals:
+ signals:
 
   void loadingFailure(const QString& msg);
   void urlChanged();
 
-private:
+ private:
   QNetworkReply* reply;
   QBuffer buffer;
   QImage* image;
   QString url;
 };
 
-#endif // WEBIMAGEWIDGET_H
+#endif  // WEBIMAGEWIDGET_H

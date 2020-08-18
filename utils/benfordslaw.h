@@ -1,11 +1,11 @@
 #ifndef BENFORDSLAW_H
 #define BENFORDSLAW_H
 
-#include <QVector>
 #include <QtCore/qglobal.h>
-class BenfordsLaw
-{
-public:
+
+#include <QVector>
+class BenfordsLaw {
+ public:
   BenfordsLaw();
 
   /**
@@ -30,4 +30,4 @@ public:
   static void compute(QVector<long>& input, QVector<int>& out);
 };
 
-#endif // BENFORDSLAW_H
+#endif  // BENFORDSLAW_H

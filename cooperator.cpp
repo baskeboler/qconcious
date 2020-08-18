@@ -1,13 +1,9 @@
 #include "cooperator.h"
 
-Cooperator::Cooperator(): GameAgent{}
-{
+Cooperator::Cooperator() : GameAgent{} {}
 
-}
+Cooperator::~Cooperator() {}
 
-Cooperator::~Cooperator(){}
-
-GameAction Cooperator::nextAction(AbstractGame *game)
-{
-    return GameAction::Cooperate;
+GameAction Cooperator::nextAction(AbstractGame *game) {
+  return GameAction::Cooperate;
 }

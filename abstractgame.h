@@ -14,9 +14,8 @@ struct Round {
   int round;
   GameAction action1;
   GameAction action2;
-  Round(const int r, const GameAction a1, const GameAction a2)
-      : round{r}, action1{a1}, action2{a2} {}
-  Round() : Round{0, Cooperate, Cooperate} {}
+  Round(const int r, const GameAction a1, const GameAction a2);
+  Round();
 };
 
 /**
@@ -26,8 +25,7 @@ struct RoundResult {
   int round;
   int score1;
   int score2;
-  RoundResult(const int r, const int s1, const int s2)
-      : round{r}, score1{s1}, score2{s2} {}
+  RoundResult(const int r, const int s1, const int s2);
 };
 
 /**

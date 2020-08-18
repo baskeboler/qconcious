@@ -1,12 +1,7 @@
 #include "cheater.h"
 
-Cheater::Cheater(): GameAgent{}
-{
-}
+Cheater::Cheater() : GameAgent{} {}
 
-GameAction Cheater::nextAction(AbstractGame *game)
-{
-    return GameAction::Cheat;
-}
+GameAction Cheater::nextAction(AbstractGame *game) { return GameAction::Cheat; }
 
-Cheater::~Cheater(){}
+Cheater::~Cheater() {}

@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS -Wall)
 
+enable_testing(true)
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
 # They need to be set before the find_package(Qt5 ...) call.
@@ -25,7 +26,11 @@ set(CMAKE_CXX_FLAGS -Wall)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets Charts Network REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Charts Network Test REQUIRED)
+
+set(TEST_SOURCES
+    benfordtest.cpp
+    benfordtest.h)
 
 set(CONCIOUS_SOURCES
     gameagent.cpp
@@ -62,22 +67,30 @@ set(CONCIOUS_SOURCES
     utils.h
     states.scxml)
 
-if(ANDROID)
-  add_library(qtconcious SHARED
+add_library(lconcious SHARED
+    ${CONCIOUS_SOURCES} )
+#if(ANDROID)
+#    add_library(qtconcious SHARED
+#        main.cpp
+#        mainwindow.cpp
+#        mainwindow.h
+#        mainwindow.ui
+#        ${CONCIOUS_SOURCES}
+#        )
+#else()
+add_executable(qtconcious
     main.cpp
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    ${CONCIOUS_SOURCES}
-  )
-else()
-  add_executable(qtconcious
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    ${CONCIOUS_SOURCES}
-  )
-endif()
+    #        ${CONCIOUS_SOURCES}
+    )
+add_executable(mytest
+    #        ${CONCIOUS_SOURCES}
+    ${TEST_SOURCES})
+add_test(NAME mytest COMMAND mytest)
+target_link_libraries(mytest PRIVATE lconcious Qt5::Test)
+#endif()
 
-target_link_libraries(qtconcious PRIVATE Qt5::Widgets Qt5::Charts Qt5::Network)
+target_link_libraries(lconcious PRIVATE Qt5::Widgets Qt5::Charts Qt5::Network)
+target_link_libraries(qtconcious PRIVATE Qt5::Widgets Qt5::Charts lconcious)
