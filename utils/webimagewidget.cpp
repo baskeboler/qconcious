@@ -67,8 +67,13 @@ void WebImageWidget::startDownload() {
   reply = mgr->get(QNetworkRequest{QUrl{url}});
 
   connect(reply, &QIODevice::readyRead, this, &WebImageWidget::readyReadSlot);
+
+#if QT_VERSION >= 0x050000
   connect(reply, &QNetworkReply::errorOccurred, this,
           &WebImageWidget::errorSlot);
+#else
+  connect(reply, &QNetworkReply::error, this, &WebImageWidget::errorSlot);
+#endif
   connect(reply, &QNetworkReply::sslErrors, this,
           &WebImageWidget::sslErrorSlot);
   //  mgr->deleteLater();
