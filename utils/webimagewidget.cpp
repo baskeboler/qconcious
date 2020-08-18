@@ -68,7 +68,7 @@ void WebImageWidget::startDownload() {
 
   connect(reply, &QIODevice::readyRead, this, &WebImageWidget::readyReadSlot);
 
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
   connect(reply, &QNetworkReply::errorOccurred, this,
           &WebImageWidget::errorSlot);
 #else
