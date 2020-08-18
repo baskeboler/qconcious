@@ -72,7 +72,8 @@ void WebImageWidget::startDownload() {
   connect(reply, &QNetworkReply::errorOccurred, this,
           &WebImageWidget::errorSlot);
 #else
-  connect(reply, &QNetworkReply::error, this, &WebImageWidget::errorSlot);
+  connect(reply, SIGNAL(QNetworkReply::error(QNetworkReply::NetworkError)),
+          this, SLOT(WebImageWidget::errorSlot(QNetworkReply::NetworkError)));
 #endif
   connect(reply, &QNetworkReply::sslErrors, this,
           &WebImageWidget::sslErrorSlot);
