@@ -28,7 +28,7 @@ enable_testing(true)
 
 set(Boost_VERBOSE ON)
 set(Boost_USE_STATIC_LIBS ON)
-find_package(Boost 1.72.0 REQUIRED COMPONENTS date_time system thread filesystem atomic container chrono)
+find_package(Boost REQUIRED COMPONENTS date_time system thread filesystem atomic container chrono)
 include_directories(${Boost_INCLUDE_DIRS})
 find_package(Qt5 COMPONENTS Widgets Charts Network Test REQUIRED)
 
