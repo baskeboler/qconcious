@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt helper action
-      run: sudo apt update && sudo apt install boost
+      run: sudo apt-get update && sudo apt-get install libboost-all-dev
     - name: Install Qt
       uses: jurplel/install-qt-action@v2.8.0
       with:
