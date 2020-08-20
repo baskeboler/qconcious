@@ -1,6 +1,14 @@
 #ifndef FIBONACCI_H
 #define FIBONACCI_H
+
+#include <boost/version.hpp>
+
+#if BOOST_VERSION > 106700
 #include <boost/gil.hpp>
+#else
+#include <boost/gil/gil_all.hpp>
+#endif
+
 #include <boost/gil/extension/io/jpeg/old.hpp>
 #include <boost/hof.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
