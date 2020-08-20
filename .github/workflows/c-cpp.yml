@@ -53,7 +53,7 @@ jobs:
         # Any extra arguments to append to the back
         extra: # optional
     - name: Prepare build directory
-      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release  && make
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release  && make -j8 && make test
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.1.4
       with:
