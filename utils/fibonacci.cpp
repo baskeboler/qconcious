@@ -1,8 +1,11 @@
 #include "fibonacci.h"
 
-uint64_t fib40 = fibonacci<40>::value;
+#if BOOST_VERSION > 106500
 
+uint64_t fib40 = fibonacci<40>::value;
 auto sum_f = BOOST_HOF_LIFT(sum);
+
+#endif
 
 void mandel(int size) {
   typedef mandelbrot_fn::point_t point_t;

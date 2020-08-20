@@ -3,19 +3,22 @@
 
 #include <boost/version.hpp>
 
-#if BOOST_VERSION > 106700
+#if BOOST_VERSION > 106500
 #include <boost/gil.hpp>
 #include <boost/gil/extension/io/jpeg/old.hpp>
+#include <boost/hof.hpp>
+#include <boost/multiprecision/cpp_int.hpp>
 #else
 #include <boost/gil/extension/io/jpeg_dynamic_io.hpp>
 #include <boost/gil/gil_all.hpp>
 #endif
 
-#include <boost/hof.hpp>
-#include <boost/multiprecision/cpp_int.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
+
+#if BOOST_VERSION > 106500
+
 namespace mp = boost::multiprecision;
 
 typedef mp::uint512_t myint;
@@ -48,6 +51,7 @@ BOOST_HOF_STATIC_LAMBDA_FUNCTION(stringify) = boost::hof::first_of(
         static_cast<std::ostringstream&>(std::ostringstream() << x).str()));
 
 BOOST_HOF_STATIC_FUNCTION(make_tuple) = boost::hof::construct<std::tuple>();
+#endif
 
 using namespace boost::gil;
 // models PixelDereferenceAdaptorConcept
