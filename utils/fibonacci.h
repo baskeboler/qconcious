@@ -5,11 +5,12 @@
 
 #if BOOST_VERSION > 106700
 #include <boost/gil.hpp>
+#include <boost/gil/extension/io/jpeg/old.hpp>
 #else
+#include <boost/gil/extension/io/jpeg_dynamic_io.hpp>
 #include <boost/gil/gil_all.hpp>
 #endif
 
-#include <boost/gil/extension/io/jpeg/old.hpp>
 #include <boost/hof.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <iostream>
