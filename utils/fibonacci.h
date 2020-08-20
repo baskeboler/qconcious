@@ -17,7 +17,7 @@
 #include <sstream>
 #include <string>
 
-#if BOOST_VERSION > 106500
+#if BOOST_VERSION > 106700
 
 namespace mp = boost::multiprecision;
 
