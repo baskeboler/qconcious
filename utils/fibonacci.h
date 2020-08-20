@@ -3,7 +3,7 @@
 
 #include <boost/version.hpp>
 
-#if BOOST_VERSION > 106500
+#if BOOST_VERSION > 106700
 #include <boost/gil.hpp>
 #include <boost/gil/extension/io/jpeg/old.hpp>
 #include <boost/hof.hpp>
