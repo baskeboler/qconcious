@@ -26,12 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt helper action
-      uses: ryankurte/action-apt@v0.1.0
-      with:
-        # architectures to pass to dpkg --add-architecture
-#         architectures: # optional
-        # apt packages to install
-        packages: boost
+      run: sudo apt update && sudo apt install boost
     - name: Install Qt
       uses: jurplel/install-qt-action@v2.8.0
       with:
