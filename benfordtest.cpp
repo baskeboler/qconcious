@@ -43,5 +43,7 @@ void BenfordTest::fibtest() {
   QCOMPARE(fibs[10], fib(10));
 }
 
+void BenfordTest::mandeltest() { mandel(5000); }
+
 QTEST_MAIN(BenfordTest)
 //#include "benfordtest.moc"

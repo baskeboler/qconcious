@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS -Wall)
 
@@ -26,12 +26,25 @@ enable_testing(true)
 #    endif()
 #endif()
 
+set(Boost_VERBOSE ON)
+set(Boost_USE_STATIC_LIBS ON)
+find_package(Boost 1.72.0 REQUIRED COMPONENTS date_time system thread filesystem atomic container chrono)
+include_directories(${Boost_INCLUDE_DIRS})
 find_package(Qt5 COMPONENTS Widgets Charts Network Test REQUIRED)
 
 set(TEST_SOURCES
     benfordtest.cpp
     benfordtest.h)
-
+set(UTILS_SOURCES
+    utils/webimagewidget.cpp
+    utils/benfordslaw.cpp
+    utils/fibonacci.cpp
+    )
+set(UTILS_HEADERS
+    utils/webimagewidget.h
+    utils/benfordslaw.h
+    utils/fibonacci.h
+    utils.h)
 set(CONCIOUS_SOURCES
     gameagent.cpp
     gameagent.h
@@ -60,15 +73,14 @@ set(CONCIOUS_SOURCES
     strategies.h
     forgivingstrategy.cpp
     forgivingstrategy.h
-    utils/webimagewidget.h
-    utils/webimagewidget.cpp
-    utils/benfordslaw.cpp
-    utils/benfordslaw.h
-    utils.h
+    ${UTILS_HEADERS}
     states.scxml)
 
 add_library(lconcious SHARED
     ${CONCIOUS_SOURCES} )
+
+add_library(utils SHARED ${UTILS_HEADERS} ${UTILS_SOURCES})
+target_link_libraries(utils PRIVATE Qt5::Widgets Qt5::Network ${Boost_LIBRARIES} -ljpeg)
 #if(ANDROID)
 #    add_library(qtconcious SHARED
 #        main.cpp
@@ -89,8 +101,8 @@ add_executable(mytest
     #        ${CONCIOUS_SOURCES}
     ${TEST_SOURCES})
 add_test(NAME mytest COMMAND mytest)
-target_link_libraries(mytest PRIVATE lconcious Qt5::Test)
+target_link_libraries(mytest PRIVATE lconcious utils Qt5::Widgets Qt5::Test -ljpeg)
 #endif()
 
-target_link_libraries(lconcious PRIVATE Qt5::Widgets Qt5::Charts Qt5::Network)
-target_link_libraries(qtconcious PRIVATE Qt5::Widgets Qt5::Charts lconcious)
+target_link_libraries(lconcious PRIVATE Qt5::Widgets Qt5::Charts utils -ljpeg)
+target_link_libraries(qtconcious PRIVATE Qt5::Widgets Qt5::Charts lconcious utils -ljpeg)

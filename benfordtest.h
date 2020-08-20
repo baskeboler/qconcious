@@ -6,7 +6,7 @@
 #include <QtCore/QObject>
 #include <QtTest/QtTest>
 
-#include "utils/benfordslaw.h"
+#include "utils.h"
 
 class BenfordTest : public QObject {
   Q_OBJECT
@@ -32,6 +32,8 @@ class BenfordTest : public QObject {
   void benfords1();
 
   void fibtest();
+
+  void mandeltest();
 };
 
 #endif  // BENFORDTEST_H
