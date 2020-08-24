@@ -8,6 +8,10 @@
 
 #include "utils.h"
 
+#if BOOST_VERSION > 106700
+#define BOOST_ENABLED true
+#endif
+
 class BenfordTest : public QObject {
   Q_OBJECT
  public:
@@ -31,9 +35,11 @@ class BenfordTest : public QObject {
 
   void benfords1();
 
+#ifdef BOOST_ENABLED
   void fibtest();
 
   void mandeltest();
+#endif
 };
 
 #endif  // BENFORDTEST_H

@@ -37,6 +37,7 @@ void BenfordTest::benfords1() {
   QCOMPARE(f, 3);
 }
 
+#ifdef BOOST_ENABLED
 void BenfordTest::fibtest() {
   QVector<qint64> fibs = fibSequence(20);
   QCOMPARE(fibs.size(), 20);
@@ -44,6 +45,7 @@ void BenfordTest::fibtest() {
 }
 
 void BenfordTest::mandeltest() { mandel(5000); }
+#endif
 
 QTEST_MAIN(BenfordTest)
 //#include "benfordtest.moc"
